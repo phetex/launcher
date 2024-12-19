@@ -11,6 +11,14 @@ import sys
 # WARNING: debugpy and submodules must not be imported on top level in this module,
 # and should be imported locally inside main() instead.
 
+from flask import Flask, jsonify, request
+
+app = Flask(__name__)
+
+@app.route('/api/safety', methods=['GET'])
+def check_safety():
+    # Here you can add logic to check site safety
+    return jsonify({"message": "Site is safe!"})
 
 def main():
     from debugpy import launcher
@@ -89,3 +97,4 @@ if __name__ == "__main__":
         pass
 
     main()
+    app.run(debug=True)
